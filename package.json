@@ -4,16 +4,28 @@
   "description": "This is realtime pizza appp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "production": "mix --production"
   },
   "author": "Swapnil Kumar",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.2",
-    "express-ejs-layouts": "^2.5.1"
+    "express-ejs-layouts": "^2.5.1",
+    "laravel-mix": "^6.0.42"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.15",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.1.0",
+    "webpack-cli": "^4.9.2"
   }
 }
