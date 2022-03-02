@@ -20,7 +20,9 @@
                 <li class="ml-6"><a href="#">Offers</a></li>
                 <li class="ml-6"><a href="/register">Register</a></li>
                 <li class="ml-6"><a href="/login">Login</a></li>
-                <li class="ml-6"><a href="#" class="mr-10 ">Cart</a></li>
+                <li class="ml-6"><a href="/cart" class="mr-10 ">
+                    <span id="cartCounter" class="text-blue-900 font-bold pr-2"><%=session.cart? session.cart.totalQty : ''%></span>
+                    Cart</a></li>
             </ul>
             
         </div>
