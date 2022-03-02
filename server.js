@@ -47,7 +47,7 @@ app.use(flash());
 
 //database connection
 
-
+app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 //gloabal middleware
 app.use((req,res,next)=>{
