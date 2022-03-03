@@ -11,6 +11,7 @@ const mongoose=require('mongoose');
 const url='mongodb://localhost/pizza';
 //const MongoDbStore=require('connect-mongo')(session);
 const MongoDbStore=require('connect-mongo');
+const passport=require('passport');
 const { nextTick } = require('process');
 
 mongoose.connect(url);
@@ -20,6 +21,10 @@ connection.on('error',console.error.bind(console,"Error connecting to MongoDb"))
 connection.once('open',function(){
     console.log("Connected to the database");
 });
+
+//passport config
+
+
 
 //session store
 
@@ -43,6 +48,14 @@ store: MongoDbStore.create({
     })
 }))
 
+const passportInit=require('./app/config/passport');
+/*app.use(passport.initialize());
+app.use(passport.session());*/
+
+passportInit(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
 
 //database connection
@@ -52,6 +65,7 @@ app.use(express.json());
 //gloabal middleware
 app.use((req,res,next)=>{
   res.locals.session=req.session;
+  res.locals.user=req.user;
   next();
 })
 //Assets
