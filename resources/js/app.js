@@ -1,8 +1,13 @@
 import axios from 'axios'
 import Noty from 'noty'
+import moment from 'moment';
+import {initAdmin} from './admin'
+//import initAdmin from './admin'
 let addtoCart=document.querySelectorAll('.add-to-cart');
 let cartCounter=document.querySelector('#cartCounter');
 
+
+//axios in 1:38:12 
 
 function updateCart(pizza){
    axios.post('/update-cart',pizza).then(function(res){
@@ -36,3 +41,5 @@ addtoCart.forEach((btn)=>{
         
         })
 })
+
+initAdmin();
