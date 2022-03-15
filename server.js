@@ -13,6 +13,7 @@ const url='mongodb://localhost/pizza';
 const MongoDbStore=require('connect-mongo');
 const passport=require('passport');
 const { nextTick } = require('process');
+const Emitter=require('events');
 
 mongoose.connect(url);
 const connection=mongoose.connection;
@@ -32,6 +33,13 @@ connection.once('open',function(){
     mongooseConnection:connection,
     collection:'sessions'
 })*/
+//event emitter
+
+const eventEmitter=new Emitter()
+app.set('eventEmitter',eventEmitter);
+
+
+
 
 //session config
 app.use(session({
@@ -84,6 +92,25 @@ require('./routes/web.js')(app);
 
 
 
-app.listen(PORT,function(){
+const server=app.listen(PORT,function(){
     console.log(`Listening on port ${PORT}`);
+})
+
+//Socket
+const io=require('socket.io')(server)
+
+io.on('connection',(socket)=>{
+    //join 
+    console.log(socket.id);
+    socket.on('join',(orderId)=>{
+        console.log(orderId);
+      socket.join(orderId);
+    })
+})
+
+eventEmitter.on('orderUpdated',(data)=>{
+    io.to(`order_${data.id}`).emit('orderUpdated',data)
+})
+eventEmitter.on('orderPlaced',(data)=>{
+    io.to('adminRoom').emit('orderPlaced',data);
 })

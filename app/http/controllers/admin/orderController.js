@@ -7,7 +7,7 @@ function orderController(){
                 if(err){
                     console.log("Error is:" ,err);
                 }
-                console.log(orders);
+               // console.log(orders);
                 if(req.xhr){
                     console.log("i reached xhr");
                     return res.json(orders);
