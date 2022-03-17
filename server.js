@@ -7,15 +7,16 @@ const expressLayout=require('express-ejs-layouts');
 const PORT = process.env.PORT || 3300;
 const session=require('express-session');
 const flash=require('express-flash');
+//Data base connection
 const mongoose=require('mongoose');
-const url='mongodb://localhost/pizza';
+//const url='mongodb://localhost/pizza';
 //const MongoDbStore=require('connect-mongo')(session);
 const MongoDbStore=require('connect-mongo');
 const passport=require('passport');
 const { nextTick } = require('process');
 const Emitter=require('events');
 
-mongoose.connect(url);
+mongoose.connect(process.env.MONGO_CONNECTION_URL);
 const connection=mongoose.connection;
 connection.on('error',console.error.bind(console,"Error connecting to MongoDb"));
 
@@ -87,6 +88,9 @@ app.set('views',path.join(__dirname,'/resources/views'));
 app.set('view engine','ejs');
 
 require('./routes/web.js')(app);
+app.use((req,res)=>{
+  res.status(404).render('errors/404');
+})
 
 
 
