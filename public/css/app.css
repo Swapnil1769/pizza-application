@@ -446,3 +446,11 @@ section.status {
   font-size: 14px;
   margin-top: 8px;
 }
+
+@media (max-width: 1060px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
