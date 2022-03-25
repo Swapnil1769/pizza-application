@@ -24,6 +24,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.2",
+    "heroku": "^7.60.0",
     "laravel-mix": "^6.0.42",
     "moment": "^2.29.1",
     "mongoose": "^6.2.3",
